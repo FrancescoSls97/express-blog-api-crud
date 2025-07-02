@@ -37,4 +37,20 @@ router.delete("/:id", function (req, res) {
 
   res.sendStatus(204);
 });
+
+//store
+router.post("/", function (req, res) {
+  const newId = posts[posts.length - 1].id + 1;
+  const newPost = {
+    id: newId,
+    title: req.body.title,
+    content: req.body.content,
+    image: req.body.image,
+    tags: req.body.tags,
+  };
+  posts.push(newPost);
+  console.log(posts);
+  res.status(201);
+  res.json(newPost);
+});
 module.exports = router;
