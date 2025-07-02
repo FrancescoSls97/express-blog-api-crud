@@ -20,4 +20,21 @@ router.get("/:id", function (req, res) {
   }
   res.json(post);
 });
+
+//destroy
+router.delete("/:id", function (req, res) {
+  const id = parseInt(req.params.id);
+  const post = posts.find((post) => post.id === id);
+  if (!post) {
+    res.status(404);
+    return res.json({
+      error: "Not Found",
+      message: "post non trovato",
+    });
+  }
+  posts.splice(posts.indexOf(post), 1);
+  console.log(posts);
+
+  res.sendStatus(204);
+});
 module.exports = router;
