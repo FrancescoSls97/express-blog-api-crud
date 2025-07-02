@@ -9,6 +9,8 @@ router.get("/", function (req, res) {
 
 //show
 router.get("/:id", function (req, res) {
-  res.send(posts);
+  const id = parseInt(req.params.id);
+  const post = posts.find((post) => post.id === id);
+  res.json(post);
 });
 module.exports = router;
